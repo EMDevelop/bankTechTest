@@ -21,18 +21,15 @@ class BankAccount {
   }
 
   _loopTransactions() {
-    let accumulatedTransactions = '';
-    let currentBalance = this.STARTING_BALANCE;
-
+    let [accumulatedTransactions, currentBalance] = ['', this.STARTING_BALANCE];
     this.transactions.forEach((transaction) => {
-      // Update balance
+      // calling Update New Balance
       currentBalance = this._updateBalance(
         currentBalance,
         transaction.transactionAmount,
         transaction.type
       );
-      // Generate line in bank statement
-      accumulatedTransactions =
+      accumulatedTransactions = // calling print function
         this._generatePrintStatement(transaction, currentBalance) +
         accumulatedTransactions;
     });
