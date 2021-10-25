@@ -42,7 +42,7 @@ describe('Creating Bank Statement', () => {
       transactionAmount: 1000.0,
     });
     bankAccount.makeTransaction({
-      date: '10/01/2023',
+      date: '14/01/2023',
       type: 'withdraw',
       transactionAmount: 500.0,
     });

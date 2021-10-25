@@ -19,22 +19,38 @@ class BankAccount {
   _loopTransactions() {
     let accumulatedTransactions = '';
     let currentBalance = this.STARTING_BALANCE;
-    this.transactions.forEach((transaction) => {
+
+    this.transactions.forEach((transaction, index) => {
+      // Update balance
+      currentBalance = this._updateBalance(
+        currentBalance,
+        transaction.transactionAmount,
+        transaction.type
+      );
+      // Generate line in bank statement
       let transactionString =
         transaction.type === 'deposit'
-          ? this._handleDeposit()
-          : this._handleWithdraw();
+          ? this._printDeposit(transaction, currentBalance)
+          : this._printWithdraw(transaction, currentBalance);
       accumulatedTransactions += transactionString;
     });
     return accumulatedTransactions;
   }
 
-  _handleDeposit() {
-    return `${this.transactions[0].date} || ${this.transactions[0].transactionAmount}.00 || || ${this.transactions[0].transactionAmount}.00\n`;
+  _updateBalance(currentBalance, transactionAmount, transactionType) {
+    return transactionType === 'deposit'
+      ? (currentBalance += transactionAmount)
+      : (currentBalance -= transactionAmount);
   }
 
-  _handleWithdraw() {
-    return `${this.transactions[0].date} || || ${this.transactions[0].transactionAmount}.00 || -${this.transactions[0].transactionAmount}.00\n`;
+  _printDeposit(transaction, currentBalance) {
+    let newBalance = currentBalance + transaction.transactionAmount;
+    return `${transaction.date} || ${transaction.transactionAmount}.00 || || ${currentBalance}.00\n`;
+  }
+
+  _printWithdraw(transaction, currentBalance) {
+    let newBalance = currentBalance - transaction.transactionAmount;
+    return `${transaction.date} || || ${transaction.transactionAmount}.00 || ${currentBalance}.00\n`;
   }
 
   _isNoTransactions() {
