@@ -13,7 +13,11 @@ class BankAccount {
   }
 
   makeTransaction(transactionDetails) {
-    this.transactions.push(new Transaction(transactionDetails));
+    this.transactions.push(this._createTransaction(transactionDetails));
+  }
+
+  _createTransaction(transactionDetails) {
+    return new Transaction(transactionDetails);
   }
 
   _loopTransactions() {

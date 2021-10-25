@@ -20,11 +20,13 @@ describe('Creating Bank Statement', () => {
   });
 
   it('add deposit', () => {
-    bankAccount.makeTransaction({
+    let transaction = {
       date: '10/01/2023',
       type: 'deposit',
       transactionAmount: 1000.0,
-    });
+    };
+    spyOn(bankAccount, '_createTransaction').and.returnValue(transaction);
+    bankAccount.makeTransaction(transaction);
     expect(bankAccount.printBankStatement()).toBe(header + transactionOne);
   });
 
