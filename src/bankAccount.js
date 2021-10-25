@@ -17,11 +17,24 @@ class BankAccount {
   }
 
   _loopTransactions() {
-    if (this.transactions[0].type === 'deposit') {
-      return `${this.transactions[0].date} || ${this.transactions[0].transactionAmount}.00 || || ${this.transactions[0].transactionAmount}.00\n`;
-    } else {
-      return `${this.transactions[0].date} || || ${this.transactions[0].transactionAmount}.00 || -${this.transactions[0].transactionAmount}.00\n`;
-    }
+    let accumulatedTransactions = '';
+    let currentBalance = this.STARTING_BALANCE;
+    this.transactions.forEach((transaction) => {
+      let transactionString =
+        transaction.type === 'deposit'
+          ? this._handleDeposit()
+          : this._handleWithdraw();
+      accumulatedTransactions += transactionString;
+    });
+    return accumulatedTransactions;
+  }
+
+  _handleDeposit() {
+    return `${this.transactions[0].date} || ${this.transactions[0].transactionAmount}.00 || || ${this.transactions[0].transactionAmount}.00\n`;
+  }
+
+  _handleWithdraw() {
+    return `${this.transactions[0].date} || || ${this.transactions[0].transactionAmount}.00 || -${this.transactions[0].transactionAmount}.00\n`;
   }
 
   _isNoTransactions() {
