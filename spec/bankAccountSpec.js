@@ -20,55 +20,68 @@ describe('Creating Bank Statement', () => {
   });
 
   it('add deposit', () => {
-    let transaction = {
+    const t1 = {
       date: '10/01/2023',
       type: 'deposit',
       transactionAmount: 1000.0,
     };
-    spyOn(bankAccount, '_createTransaction').and.returnValue(transaction);
-    bankAccount.makeTransaction(transaction);
+    spyOn(bankAccount, '_createTransaction').and.returnValue(t1);
+    bankAccount.makeTransaction();
     expect(bankAccount.printBankStatement()).toBe(header + transactionOne);
   });
 
   it('subtract withdraw', () => {
-    bankAccount.makeTransaction({
+    const t1 = {
       date: '10/01/2023',
       type: 'withdraw',
       transactionAmount: 500.0,
-    });
+    };
+    spyOn(bankAccount, '_createTransaction').and.returnValue(t1);
+    bankAccount.makeTransaction();
     expect(bankAccount.printBankStatement()).toBe(header + singleWithdraw);
   });
 
   it('deposits 1000 then withdraws 500', () => {
-    bankAccount.makeTransaction({
+    const t1 = {
       date: '10/01/2023',
       type: 'deposit',
       transactionAmount: 1000.0,
-    });
-    bankAccount.makeTransaction({
+    };
+    const t2 = {
       date: '14/01/2023',
       type: 'withdraw',
       transactionAmount: 500.0,
-    });
+    };
+
+    spyOn(bankAccount, '_createTransaction').and.returnValues(t1, t2);
+    bankAccount.makeTransaction();
+    bankAccount.makeTransaction();
+
     expect(bankAccount.printBankStatement()).toBe(header + depositAndWithdraw);
   });
 
   it('deposits 1000 then deposits 2000 then withdraws 500', () => {
-    bankAccount.makeTransaction({
+    const t1 = {
       date: '10/01/2023',
       type: 'deposit',
       transactionAmount: 1000.0,
-    });
-    bankAccount.makeTransaction({
+    };
+    const t2 = {
       date: '13/01/2023',
       type: 'deposit',
       transactionAmount: 2000.0,
-    });
-    bankAccount.makeTransaction({
+    };
+    const t3 = {
       date: '14/01/2023',
       type: 'withdraw',
       transactionAmount: 500.0,
-    });
+    };
+
+    spyOn(bankAccount, '_createTransaction').and.returnValues(t1, t2, t3);
+    bankAccount.makeTransaction();
+    bankAccount.makeTransaction();
+    bankAccount.makeTransaction();
+
     expect(bankAccount.printBankStatement()).toBe(
       header + twoDepositsOneWithdraw
     );
