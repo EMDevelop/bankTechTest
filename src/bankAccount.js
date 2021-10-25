@@ -28,24 +28,23 @@ class BankAccount {
         transaction.type
       );
       // Generate line in bank statement
-      accumulatedTransactions += this._generatePrintStatement(
-        transaction,
-        currentBalance
-      );
+      accumulatedTransactions =
+        this._generatePrintStatement(transaction, currentBalance) +
+        accumulatedTransactions;
     });
     return accumulatedTransactions;
-  }
-
-  _generatePrintStatement(transaction, currentBalance) {
-    return transaction.type === 'deposit'
-      ? this._printDeposit(transaction, currentBalance)
-      : this._printWithdraw(transaction, currentBalance);
   }
 
   _updateBalance(currentBalance, transactionAmount, transactionType) {
     return transactionType === 'deposit'
       ? (currentBalance += transactionAmount)
       : (currentBalance -= transactionAmount);
+  }
+
+  _generatePrintStatement(transaction, currentBalance) {
+    return transaction.type === 'deposit'
+      ? this._printDeposit(transaction, currentBalance)
+      : this._printWithdraw(transaction, currentBalance);
   }
 
   _printDeposit(transaction, currentBalance) {
