@@ -28,13 +28,18 @@ class BankAccount {
         transaction.type
       );
       // Generate line in bank statement
-      let transactionString =
-        transaction.type === 'deposit'
-          ? this._printDeposit(transaction, currentBalance)
-          : this._printWithdraw(transaction, currentBalance);
-      accumulatedTransactions += transactionString;
+      accumulatedTransactions += this._generatePrintStatement(
+        transaction,
+        currentBalance
+      );
     });
     return accumulatedTransactions;
+  }
+
+  _generatePrintStatement(transaction, currentBalance) {
+    return transaction.type === 'deposit'
+      ? this._printDeposit(transaction, currentBalance)
+      : this._printWithdraw(transaction, currentBalance);
   }
 
   _updateBalance(currentBalance, transactionAmount, transactionType) {
