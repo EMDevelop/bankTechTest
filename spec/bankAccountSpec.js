@@ -26,7 +26,7 @@ describe('Creating Bank Statement', () => {
       transactionAmount: 1000.0,
     };
     spyOn(bankAccount, '_createTransaction').and.returnValue(t1);
-    bankAccount.makeTransaction();
+    bankAccount.recordTransaction();
     expect(bankAccount.printBankStatement()).toBe(header + transactionOne);
   });
 
@@ -37,7 +37,7 @@ describe('Creating Bank Statement', () => {
       transactionAmount: 500.0,
     };
     spyOn(bankAccount, '_createTransaction').and.returnValue(t1);
-    bankAccount.makeTransaction();
+    bankAccount.recordTransaction();
     expect(bankAccount.printBankStatement()).toBe(header + singleWithdraw);
   });
 
@@ -54,8 +54,8 @@ describe('Creating Bank Statement', () => {
     };
 
     spyOn(bankAccount, '_createTransaction').and.returnValues(t1, t2);
-    bankAccount.makeTransaction();
-    bankAccount.makeTransaction();
+    bankAccount.recordTransaction();
+    bankAccount.recordTransaction();
 
     expect(bankAccount.printBankStatement()).toBe(header + depositAndWithdraw);
   });
@@ -78,9 +78,9 @@ describe('Creating Bank Statement', () => {
     };
 
     spyOn(bankAccount, '_createTransaction').and.returnValues(t1, t2, t3);
-    bankAccount.makeTransaction();
-    bankAccount.makeTransaction();
-    bankAccount.makeTransaction();
+    bankAccount.recordTransaction();
+    bankAccount.recordTransaction();
+    bankAccount.recordTransaction();
 
     expect(bankAccount.printBankStatement()).toBe(
       header + twoDepositsOneWithdraw

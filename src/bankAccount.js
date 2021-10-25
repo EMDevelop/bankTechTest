@@ -4,7 +4,7 @@ class BankAccount {
     this.STARTING_BALANCE = 0;
   }
 
-  makeTransaction(transactionDetails) {
+  recordTransaction(transactionDetails) {
     this.transactions.push(this._createTransaction(transactionDetails));
   }
 
