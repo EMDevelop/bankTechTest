@@ -9,7 +9,6 @@ class BankAccount {
     const transactionSummary = this._isNoTransactions()
       ? ''
       : this._loopTransactions();
-    console.log(transactionSummary);
     return header + transactionSummary;
   }
 
@@ -18,7 +17,11 @@ class BankAccount {
   }
 
   _loopTransactions() {
-    return `${this.transactions[0].date} || ${this.transactions[0].transactionAmount}.00 || || ${this.transactions[0].transactionAmount}.00\n`;
+    if (this.transactions[0].type === 'deposit') {
+      return `${this.transactions[0].date} || ${this.transactions[0].transactionAmount}.00 || || ${this.transactions[0].transactionAmount}.00\n`;
+    } else {
+      return `${this.transactions[0].date} || || ${this.transactions[0].transactionAmount}.00 || -${this.transactions[0].transactionAmount}.00\n`;
+    }
   }
 
   _isNoTransactions() {
