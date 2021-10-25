@@ -10,8 +10,10 @@ describe('Creating Bank Statement', () => {
   const depositAndWithdraw =
     '14/01/2023 || || 500.00 || 500.00\n' + transactionOne;
 
-  // const transactionTwo = '13/01/2023 || 2000.00 || || 3000.00\n';
-  // const transactionThree = '14/01/2023 || || 500.00 || 2500.00\n';
+  const transactionTwo = '13/01/2023 || 2000.00 || || 3000.00\n';
+  const transactionThree = '14/01/2023 || || 500.00 || 2500.00\n';
+  const twoDepositsOneWithdraw =
+    transactionThree + transactionTwo + transactionOne;
 
   it('Titles Displaying', () => {
     expect(bankAccount.printBankStatement()).toEqual(header);
@@ -47,5 +49,26 @@ describe('Creating Bank Statement', () => {
       transactionAmount: 500.0,
     });
     expect(bankAccount.printBankStatement()).toBe(header + depositAndWithdraw);
+  });
+
+  it('deposits 1000 then deposits 2000 then withdraws 500', () => {
+    bankAccount.makeTransaction({
+      date: '10/01/2023',
+      type: 'deposit',
+      transactionAmount: 1000.0,
+    });
+    bankAccount.makeTransaction({
+      date: '13/01/2023',
+      type: 'deposit',
+      transactionAmount: 2000.0,
+    });
+    bankAccount.makeTransaction({
+      date: '14/01/2023',
+      type: 'withdraw',
+      transactionAmount: 500.0,
+    });
+    expect(bankAccount.printBankStatement()).toBe(
+      header + twoDepositsOneWithdraw
+    );
   });
 });
