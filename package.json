@@ -1,0 +1,22 @@
+{
+  "name": "banktechtest",
+  "version": "1.0.0",
+  "description": "## Spec",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EMDevelop/bankTechTest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EMDevelop/bankTechTest/issues"
+  },
+  "homepage": "https://github.com/EMDevelop/bankTechTest#readme",
+  "devDependencies": {
+    "eslint": "^8.1.0"
+  }
+}
