@@ -1,5 +1,50 @@
 # bankTechTest
 
+This is an example coding test. it took me 4/5 hours.
+
+A user can add multiple transactions (both withdraws and deposits) and then, once finished transacting, request for a print out of their previous transactions.
+
+# Preview
+
+![bankTest](https://github.com/EMDevelop/public_resources/blob/main/images/banking/bankTest.png)
+
+# How to run
+
+- clone this repo `git clone https://github.com/EMDevelop/bankTechTest.git`
+- install dependencies `npm install`
+- run code:
+  - `open index.html`
+  - Open the dev console (`fn + f12` on the keyboard)
+  - In the console, write the below:
+
+```
+account = new BankAccount();
+console.log(account.printBankStatement())
+```
+
+- add a new deposit
+
+```
+account.makeTransaction({date:'10/02/2012' , type: 'deposit', transactionAmount: 300})
+```
+
+- add a new withdrawal
+
+```
+account.makeTransaction({date:'10/02/2012' , type: 'withdraw', transactionAmount: 20})
+```
+
+- re-check your balance
+  // Output:
+
+```
+date || credit || debit || balance
+10/02/2012 || || 20.00 || 280.00
+10/02/2012 || 300.00 || || 300.00
+```
+
+- check tests: `npx jasmine-browser-runner serve`
+
 ## Spec
 
 Requirements
@@ -24,10 +69,19 @@ date || credit || debit || balance
 13/01/2023 || 2000.00 || || 3000.00
 10/01/2023 || 1000.00 || || 1000.00
 
-## Eds notes
+## Eds Approach
 
-- deposit money + credit & + Balance
-- withdraw money + debit & - Balance
+#### Code structure
+
+My code is structured into two different classes, BankAccount and Transactions.
+
+Transactions are simply a record of information that each transaction would have. Had the data got more complicated, I'd likely refactor Transactions to be a parent class, and then have `CreditTransaction < Transaction` and `DebitTransaction < Transaction` as they share some attributes but not all.
+
+The main class which is where my testing framework points, is the `BankAccount` class. The bank account class is responsible for receiving transaction requests from users. It is then responsibe for calculating the current balance based on each new transaction, and informing the requester of their current account balance.
+
+#### Domain Modelling
+
+I've mapped out the classes and methods I will need, roughly, as seen in my CRC cards below.
 
 `bankAccount`
 
@@ -44,7 +98,9 @@ date || credit || debit || balance
 |         | String: type             |
 |         | Float: transactionAmount |
 
-## Input Output
+#### Input / Output
+
+I've mapped out inputs and outputs below, although if I were to do this again, I'd change the order to the order of my actual tests.
 
 All Outputs have a title of :
 date || credit || debit || balance
