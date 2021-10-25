@@ -6,9 +6,11 @@ class BankAccount {
 
   printBankStatement() {
     const header = 'date || credit || debit || balance\n';
-    // const transactionSummary = this._loopTransactions();
-    // console.log(header + header);
-    return header;
+    const transactionSummary = this._isNoTransactions()
+      ? ''
+      : this._loopTransactions();
+    console.log(transactionSummary);
+    return header + transactionSummary;
   }
 
   makeTransaction(transactionDetails) {
@@ -16,10 +18,10 @@ class BankAccount {
   }
 
   _loopTransactions() {
-    const transactionSummary = '';
-    return `${this.transactions[0].date} || ${this.transactions[0].amount} || || ${this.transactions[0].amount}\n`;
-    // this.transactions.forEach(transaction => {
+    return `${this.transactions[0].date} || ${this.transactions[0].transactionAmount}.00 || || ${this.transactions[0].transactionAmount}.00\n`;
+  }
 
-    // });
+  _isNoTransactions() {
+    return this.transactions.length === 0;
   }
 }
