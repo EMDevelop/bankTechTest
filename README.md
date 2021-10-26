@@ -4,20 +4,29 @@ This is an example of a coding test, built in Javascript and tested using the Ja
 
 A user can add multiple transactions (both withdraws and deposits) and then, once finished transacting, request for a print out of their previous transactions.
 
-# Preview
+I have had another go at the challenge with a different class structure. These files will sit at the root level of this repository, but if you'd like to see how they differ from the first attempt, check out the `/firstAttempt` directory.
+
+## First Attempt Preview
 
 ![bankTest](https://github.com/EMDevelop/public_resources/blob/main/images/banking/bankTest.png)
 
 # How to run
 
 - clone this repo `git clone https://github.com/EMDevelop/bankTechTest.git`
+- navigate to the repository: `cd bankTechTest`
 - install dependencies `npm install`
-- run code:
 
-  - `open index.html`
+### Run my First attempt
+
+- run the below in your terminal:
+  - `open firstAttempt/index.html`
   - follow the on-screen instructions
 
-- check tests: `npx jasmine-browser-runner serve`
+### Run my Second attempt
+
+- run the below in your terminal:
+  - `open index.html`
+  - follow the on-screen instructions
 
 ## Spec
 
