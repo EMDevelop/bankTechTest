@@ -1,6 +1,6 @@
 # bankTechTest
 
-This is an example coding test. it took me 4/5 hours.
+This is an example of a coding test, built in Javascript and tested using the Jasmine testing framework.
 
 A user can add multiple transactions (both withdraws and deposits) and then, once finished transacting, request for a print out of their previous transactions.
 
@@ -13,35 +13,9 @@ A user can add multiple transactions (both withdraws and deposits) and then, onc
 - clone this repo `git clone https://github.com/EMDevelop/bankTechTest.git`
 - install dependencies `npm install`
 - run code:
+
   - `open index.html`
-  - Open the dev console (`fn + f12` on the keyboard)
-  - In the console, write the below:
-
-```
-account = new BankAccount();
-console.log(account.printBankStatement())
-```
-
-- add a new deposit
-
-```
-account.makeTransaction({date:'10/02/2012' , type: 'deposit', transactionAmount: 300})
-```
-
-- add a new withdrawal
-
-```
-account.makeTransaction({date:'10/02/2012' , type: 'withdraw', transactionAmount: 20})
-```
-
-- re-check your balance
-  // Output:
-
-```
-date || credit || debit || balance
-10/02/2012 || || 20.00 || 280.00
-10/02/2012 || 300.00 || || 300.00
-```
+  - follow the on-screen instructions
 
 - check tests: `npx jasmine-browser-runner serve`
 
@@ -85,10 +59,10 @@ I've mapped out the classes and methods I will need, roughly, as seen in my CRC 
 
 `bankAccount`
 
-| methods                                  | attributes          |
-| ---------------------------------------- | ------------------- |
-| makeTransaction({Date: , type: ,amount}) | Array: Transactions |
-| printBankStatement()                     | Float: bankBalance  |
+| methods                                    | attributes          |
+| ------------------------------------------ | ------------------- |
+| recordTransaction({Date: , type: ,amount}) | Array: Transactions |
+| printBankStatement()                       | Float: bankBalance  |
 
 `transactions`
 

@@ -7,7 +7,41 @@
     <title>Document</title>
   </head>
   <body>
-    "Hey Hey"
+    Welcome to my bank test. To run, please:
+    <ul>
+      <li>open your Developer Toolbar (in chrome, `functionKey + F12 key`)</li>
+      <li>Navigate to your browser's console</li>
+      <li>
+        enter the following into the console:
+        <ul>
+          <li>account = new BankAccount()</li>
+          <li>console.log(account.printBankStatement())</li>
+          <li>
+            account.recordTransaction({date:'10/02/2012' , type: 'deposit',
+            transactionAmount: 300})
+          </li>
+          <li>
+            account.recordTransaction({date:'10/02/2012' , type: 'withdraw',
+            transactionAmount: 20})
+          </li>
+          <li>console.log(account.printBankStatement())</li>
+        </ul>
+        <p>The expected output of the first console.log:</p>
+
+        <pre style="background-color: rgba(128, 128, 128, 0.05)">
+          date || credit || debit || balance
+          undefined
+        </pre>
+        <p>The expected output of the second console.log:</p>
+
+        <pre style="background-color: rgba(128, 128, 128, 0.05)">
+          date || credit || debit || balance
+          10/02/2012 || || 20.00 || 280.00
+          10/02/2012 || 300.00 || || 300.00
+        </pre>
+      </li>
+    </ul>
+
     <script src="src/bankAccount.js"></script>
     <script src="src/transaction.js"></script>
   </body>
