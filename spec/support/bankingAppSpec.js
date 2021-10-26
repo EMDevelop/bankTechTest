@@ -1,6 +1,6 @@
 describe('BankAccountTransactions', () => {
   beforeEach(function () {
-    app = new bankingApp();
+    app = new BankingApp();
   });
 
   // Outputs

@@ -1,5 +1,9 @@
-class bankingApp {
+class BankingApp {
+  constructor() {
+    this.account = new BankAccount();
+  }
+
   printMyAccountStatement() {
-    return 'date || credit || debit || balance\n';
+    return this.account.getStatement();
   }
 }

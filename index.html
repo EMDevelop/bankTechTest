@@ -14,23 +14,16 @@
       <li>
         enter the following into the console:
         <ul>
-          <li>account = new BankAccount()</li>
-          <li>console.log(account.printBankStatement())</li>
-          <li>
-            account.recordTransaction({date:'10/02/2012' , type: 'deposit',
-            transactionAmount: 300})
-          </li>
-          <li>
-            account.recordTransaction({date:'10/02/2012' , type: 'withdraw',
-            transactionAmount: 20})
-          </li>
-          <li>console.log(account.printBankStatement())</li>
+          <li>app = new BankingApp()</li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
         </ul>
         <p>The expected output of the first console.log:</p>
 
         <pre style="background-color: rgba(128, 128, 128, 0.05)">
           date || credit || debit || balance
-          undefined
         </pre>
         <p>The expected output of the second console.log:</p>
 
@@ -44,5 +37,7 @@
 
     <script src="src/bankAccount.js"></script>
     <script src="src/transaction.js"></script>
+    <script src="src/statementReport.js"></script>
+    <script src="src/bankingApp.js"></script>
   </body>
 </html>
