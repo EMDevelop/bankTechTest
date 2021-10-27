@@ -8,11 +8,16 @@ class BankingApp {
   }
 
   makeDeposit(transactionDetails) {
-    const transaction = this._createTransaction(transactionDetails);
+    const transaction = this._createTransaction(transactionDetails, 'deposit');
+    this.account.storeTransaction(transaction);
+  }
+
+  makeWithdrawal(transactionDetails) {
+    const transaction = this._createTransaction(transactionDetails, 'withdraw');
     this.account.storeTransaction(transaction);
   }
 
   _createTransaction(transactionDetails, transactionType) {
-    return new Transaction(transactionDetails, 'deposit');
+    return new Transaction(transactionDetails, transactionType);
   }
 }

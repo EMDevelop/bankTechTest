@@ -15,6 +15,7 @@ describe('BankAccountTransactions', () => {
   it('add a single deposit', () => {
     const t1 = {
       date: '10/01/2023',
+      type: 'deposit',
       transactionAmount: 1000.0,
     };
     spyOn(app, '_createTransaction').and.returnValue(t1);
@@ -22,13 +23,14 @@ describe('BankAccountTransactions', () => {
     expect(app.printMyAccountStatement()).toEqual(header + transactionOne);
   });
 
-  // it('subtract withdraw', () => {
-  //   const t1 = {
-  //     date: '10/01/2023',
-  //     transactionAmount: 500.0,
-  //   };
-  //   spyOn(app, '_createTransaction').and.returnValue(t1);
-  //   app.makeWithdrawal();
-  //   expect(bankAccount.printBankStatement()).toBe(header + singleWithdraw);
-  // });
+  it('subtract withdraw', () => {
+    const t1 = {
+      date: '10/01/2023',
+      type: 'withdraw',
+      transactionAmount: 500.0,
+    };
+    spyOn(app, '_createTransaction').and.returnValue(t1);
+    app.makeWithdrawal();
+    expect(app.printMyAccountStatement()).toBe(header + singleWithdraw);
+  });
 });
