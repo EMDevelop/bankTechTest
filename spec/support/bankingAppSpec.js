@@ -7,6 +7,8 @@ describe('BankAccountTransactions', () => {
   const header = 'date || credit || debit || balance\n';
   const transactionOne = '10/01/2023 || 1000.00 || || 1000.00\n';
   const singleWithdraw = '10/01/2023 || || 500.00 || -500.00\n';
+  const singleDepositFloat = '10/01/2023 || 1000.30 || || 1000.30\n';
+
   const depositAndWithdraw =
     '14/01/2023 || || 500.00 || 500.00\n' + transactionOne;
   const transactionTwo = '13/01/2023 || 2000.00 || || 3000.00\n';
@@ -84,5 +86,14 @@ describe('BankAccountTransactions', () => {
     expect(app.printMyAccountStatement()).toBe(header + twoDepositsOneWithdraw);
   });
 
-  // it('deposits an amount with decimals')
+  it('deposits an amount with decimals', () => {
+    const t1 = {
+      date: '10/01/2023',
+      type: 'deposit',
+      transactionAmount: 1000.3,
+    };
+    spyOn(app, '_createTransaction').and.returnValues(t1);
+    app.makeDeposit();
+    expect(app.printMyAccountStatement()).toBe(header + singleDepositFloat);
+  });
 });

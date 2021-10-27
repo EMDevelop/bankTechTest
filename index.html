@@ -7,7 +7,7 @@
     <title>Document</title>
   </head>
   <body>
-    Welcome to my bank test. To run, please:
+    <h1>Welcome to my bank test. To run, please:</h1>
     <ul>
       <li>open your Developer Toolbar (in chrome, `functionKey + F12 key`)</li>
       <li>Navigate to your browser's console</li>
@@ -19,21 +19,22 @@
             app.makeDeposit({date: '10/03/2023', transactionAmount: 1000.00})
           </li>
           <li>console.log(app.printMyAccountStatement())</li>
-          <li></li>
-          <li></li>
+
+          <pre style="background-color: rgba(128, 128, 128, 0.05)">
+            date || credit || debit || balance
+            10/03/2023 || 1000.00 || || 1000.00
+          </pre>
+          <li>
+            app.makeWithdrawal({date: '10/03/2023', transactionAmount: 30.99})
+          </li>
+          <li>console.log(app.printMyAccountStatement())</li>
+
+          <pre style="background-color: rgba(128, 128, 128, 0.05)">
+            date || credit || debit || balance
+            10/03/2023 || || 30.99 || 969.01
+            10/03/2023 || 1000.00 || || 1000.00
+          </pre>
         </ul>
-        <p>The expected output of the first console.log:</p>
-
-        <pre style="background-color: rgba(128, 128, 128, 0.05)">
-          date || credit || debit || balance
-        </pre>
-        <p>The expected output of the second console.log:</p>
-
-        <pre style="background-color: rgba(128, 128, 128, 0.05)">
-          date || credit || debit || balance
-          10/02/2012 || || 20.00 || 280.00
-          10/02/2012 || 300.00 || || 300.00
-        </pre>
       </li>
     </ul>
 
