@@ -83,4 +83,6 @@ describe('BankAccountTransactions', () => {
 
     expect(app.printMyAccountStatement()).toBe(header + twoDepositsOneWithdraw);
   });
+
+  // it('deposits an amount with decimals')
 });

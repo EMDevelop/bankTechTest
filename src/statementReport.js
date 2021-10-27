@@ -1,6 +1,5 @@
 class StatementReport {
   constructor() {
-    this.header = 'date || credit || debit || balance\n';
     this.STARTING_BALANCE = 0;
   }
 
@@ -41,14 +40,22 @@ class StatementReport {
   }
 
   _printDeposit(transaction, currentBalance) {
-    return `${transaction.date} || ${transaction.transactionAmount}.00 || || ${currentBalance}.00\n`;
+    return `${transaction.date} || ${this._float(
+      transaction.transactionAmount
+    )} || || ${this._float(currentBalance)}\n`;
   }
 
   _printWithdraw(transaction, currentBalance) {
-    return `${transaction.date} || || ${transaction.transactionAmount}.00 || ${currentBalance}.00\n`;
+    return `${transaction.date} || || ${this._float(
+      transaction.transactionAmount
+    )} || ${this._float(currentBalance)}\n`;
   }
 
   _isNoTransactions(transactions) {
     return transactions.length === 0;
+  }
+
+  _float(number) {
+    return parseFloat(number).toFixed(2);
   }
 }
